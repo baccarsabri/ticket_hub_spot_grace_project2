@@ -475,7 +475,10 @@ const Index = () => {
 
       if(TicketsStubhub.length>0 && TicketsVividseats.length>0){
         console.log(TicketsGameTimes);
-        const dataFiltredGame = filterGametime(TicketsGameTimes);
+        var dataFiltredGame=[];
+        if(TicketsGameTimes.length>0){
+           dataFiltredGame = filterGametime(TicketsGameTimes);
+        }
         const dataFiltredStub = filterStubhub(TicketsStubhub)
         const dataFiltredVivid =  filterVividseats(TicketsVividseats);
        
