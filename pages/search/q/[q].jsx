@@ -22,13 +22,11 @@ const Index = () => {
     const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
-      console.log(q);
       async function fetchData() {
         try {
           // Make your API call using Axios
           const response = await axios.get(`https://api.seatgeek.com/2/events/?q=${q}&client_id=Mzk1MDc3NTh8MTcwNTU5NjQ3Ny44MzQyOTg0&per_page=20`);
           const data = response.data;
-          console.log(data);
           // Update data state with the fetched events
           setData(data);
         } catch (error) {

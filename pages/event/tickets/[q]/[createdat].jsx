@@ -99,7 +99,6 @@ const Index = () => {
           });
 
 
-          console.log(filteredItems);
           
           if(filteredItems.length>0){
             setDataStubhub(filteredItems);
@@ -118,11 +117,9 @@ const Index = () => {
       async function fetchDataVividseats() {
         try {
           // Make your API call using Axios
-          console.log('fetchDataVividseatsfetchDataVividseatsfetchDataVividseats');
 
           const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/vividseatsSearch/${q}`);
           const data = response.data;
-          console.log(data);
       
             const filteredItems = data.json.items.filter(item => {
               const date = item.localDate.substring(0, 10);
@@ -131,7 +128,6 @@ const Index = () => {
               return date === createdat;
           })
 
-          console.log(filteredItems);
           if(filteredItems.length>0){
             setDataVividseats(filteredItems);
             setUrlVividseats(`https://www.vividseats.com${filteredItems[0].organicUrl}`)
@@ -151,7 +147,6 @@ const Index = () => {
           // Make your API call using Axios
           const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/gametimeSearch/${q}`);
           const data = response.data;
-      console.log(data);
             const filteredItems = data.events.filter(item => {
               const date = item.event.datetime_local.substring(0, 10);
 
@@ -159,9 +154,7 @@ const Index = () => {
               return date === createdat;
           })
 
-          console.log(filteredItems);
           if(filteredItems.length>0){
-            console.log('yessssssss');
             setDataGameTimes(filteredItems);
 
           }    
@@ -187,14 +180,12 @@ const Index = () => {
             return url;
         }
         const url = generateURL(filteredItems[0]);
-        console.log(url);
         try {
           const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/getTicketsGametimes`, { url: `https://gametime.co${url}` });
           const data = response.data;
           setTicketsGameTimes(data.redux.data.listings);
           let item='1';
-          console.log(data.redux.data.listings.displayGroupList[item][0]); 
-          console.log(data.redux.data.listings);
+
 
           function filterGametime(data) {
 
@@ -207,7 +198,6 @@ const Index = () => {
           });
           setDataFiltredGameTimes(filteredData);
 
-            console.log(filteredData);
           }      
           filterGametime(data.redux.data.listings);
 
@@ -225,7 +215,6 @@ const Index = () => {
           // Set loading to false after the API call is complete
           setLoadingVividseats(false);
           setLoadingAll(prevLoadingAll => prevLoadingAll + 1);
-          console.log('finaaaaaaaallllllll');
         }
       }
 
@@ -242,7 +231,6 @@ const Index = () => {
 
     useEffect(() => {
       if (dataVividseats[0]?.id !== undefined) {
-        console.log(dataVividseats);
       
         const fetchDataTicketsVivid = async (id) => {
           try {
@@ -255,11 +243,6 @@ const Index = () => {
             setLowPrice(Math.floor(parseInt(lp) * 0.8));
             setHighPrice(Math.floor(parseInt(hp) * 1.2));
             setTicketsVividseats(data.tickets);
-
-            
-
-            console.log(data);
-
             function filterVividseats(data) {
               const filteredArray = data.filter(obj => obj.m.includes(quantity));
               setDataFiltredVividseats(filteredArray);
@@ -317,7 +300,6 @@ const Index = () => {
           const filteredArray = allTickets.filter(obj => obj.AvailableQuantities.includes(parseInt(quantity)));
 
           setDataFiltreStubhub(filteredArray);
-          console.log(filteredArray);
   
           // Update state with all tickets
           setTicketsStubhub(prevTickets => [...prevTickets, ...allTickets]);
@@ -341,7 +323,6 @@ const Index = () => {
           // Make your API call using Axios
           const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/stubhubSearchTickets`,body);
           const data = response.data;
-          console.log(data);
           setTicketsStubhub(data.Items);
           
           fetchData(data.NumPages);
@@ -355,12 +336,10 @@ const Index = () => {
 
           // Set loading to false after the API call is complete
           setLoadingVividseats(false);
-          console.log('eeeeeeeennnnnnnnnddd');
         }
       }
       if(dataStubhub.length>0){
         fetchTicketsStubHub();
-        console.log(dataStubhub);
       }else{
         setLoadingAll(prevLoadingAll => prevLoadingAll + 1);
 
@@ -373,10 +352,8 @@ const Index = () => {
 
     
     useEffect(() => {
-      console.log(loadingAll);
       if(loadingAll>=3){
 
-        console.log(loadingAll);
         const array1 = dataFiltredGameTimes;
         const array2 = dataFiltredStubhub;
         const array3 = dataFiltredVividseats;
@@ -413,14 +390,9 @@ const Index = () => {
 
  
 
-    useEffect(() => {
-      if(dataVividseats.length>0 && dataStubhub.length>0){
-        console.log('2222222222 okkkkkkkkkkkk');
-      }
-    }, [,dataStubhub]);
+
 
     useEffect(() => {
-      console.log(TicketsStubhub);
       let counter=0
       function filterVividseats(data) {
         const filteredArray = data.filter(obj => {
@@ -450,10 +422,9 @@ const Index = () => {
       function filterGametime(data) {
         if(data.sortOrder){
 
-          console.log('okiii');
           const filteredData = [];
 
-          data?.displayGroupList[quantity].forEach(item => {
+          data?.displayGroupList[quantity]?.forEach(item => {
            // setTicketsStubhub(prevTickets => [...prevTickets, ...allTickets]);
            const listingData = data.allListings[item];
            const price = listingData.price.prefee/100;
@@ -462,28 +433,28 @@ const Index = () => {
            }
            
         });
-        console.log(filteredData);
         setDataFiltredGameTimes(filteredData);
-        counter+=1;
+                  counter+=1;
+
   
       return filteredData;
         }else {
           counter+=1;
           return []
         };
+        
       }      
 
       if(TicketsStubhub.length>0 && TicketsVividseats.length>0){
-        console.log(TicketsGameTimes);
-        var dataFiltredGame=[];
+       
         if(TicketsGameTimes.length>0){
-           dataFiltredGame = filterGametime(TicketsGameTimes);
         }
+        const dataFiltredGame = filterGametime(TicketsGameTimes);
+
         const dataFiltredStub = filterStubhub(TicketsStubhub)
         const dataFiltredVivid =  filterVividseats(TicketsVividseats);
-       
+
         if(counter==3){
-          console.log(loadingAll);
           const array1 = dataFiltredGame;
           const array2 = dataFiltredStub;
           const array3 = dataFiltredVivid;
@@ -505,7 +476,6 @@ const Index = () => {
           }
   
           setMergedData(mergedArray)
-          console.log(mergedArray);
   
         }
       }
@@ -518,7 +488,6 @@ const Index = () => {
     };
 
     const handlePrice = (min,max) =>{
-      console.log(min + '/' + max);
       setLowPrice(min);
       setHighPrice(max);
     }
@@ -641,11 +610,9 @@ if (priceA < priceB) {
       // Check if a match is found
       if (matches && matches.length > 1) {
           const timeZone = matches[1]; // Extract the time zone from the match
-          console.log(timeZone);
           return timeZone;
                      // Output: "America/Los_Angeles"
       } else {
-          console.log("Time zone not found in the string.");
       }
     };
 

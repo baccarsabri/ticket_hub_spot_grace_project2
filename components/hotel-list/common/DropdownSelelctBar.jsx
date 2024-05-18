@@ -41,7 +41,7 @@ const DropdownSelelctBar = ({handleQuantity , quantity , lowPrice , highPrice , 
               aria-expanded="false"
               data-bs-offset="0,10"
             >
-              <span className="js-dropdown-title">Price range : {lowPrice} - {maxP}</span>
+              <span className="js-dropdown-title">Price range : {lowPrice} - {highPrice}</span>
               <i className="icon icon-chevron-sm-down text-7 ml-10" />
             </div>
             {/* End dropdown__button */}
