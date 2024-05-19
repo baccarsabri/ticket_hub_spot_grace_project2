@@ -395,28 +395,40 @@ const Index = () => {
     useEffect(() => {
       let counter=0
       function filterVividseats(data) {
-        const filteredArray = data.filter(obj => {
-          // Parse the "p" value to a float
-          const price = parseFloat(obj.p);
-          // Check if the price falls within the range defined by low and high
-          return price >= lowPrice && price <= highPrice && obj.m.includes(quantity);
-      });
-        setDataFiltredVividseats(filteredArray);
-        counter+=1;
-        return filteredArray;
+        if(data.length>0){
+          const filteredArray = data.filter(obj => {
+            // Parse the "p" value to a float
+            const price = parseFloat(obj.p);
+            // Check if the price falls within the range defined by low and high
+            return price >= lowPrice && price <= highPrice && obj.m.includes(quantity);
+        });
+          setDataFiltredVividseats(filteredArray);
+          counter+=1;
+          return filteredArray;
+        }else{
+          counter+=1;
+          return []
+        }
+
       }
 
       function filterStubhub(allTickets){
-
-        const filteredArray = allTickets.filter(obj => {
-          const price = obj.RawPrice;
-
-          return price >= lowPrice && price <= highPrice && obj.AvailableQuantities.includes(parseInt(quantity))
-        });
-
-          setDataFiltreStubhub(filteredArray);
+        if(allTickets.length>0){
+          const filteredArray = allTickets.filter(obj => {
+            const price = obj.RawPrice;
+  
+            return price >= lowPrice && price <= highPrice && obj.AvailableQuantities.includes(parseInt(quantity))
+          });
+  
+            setDataFiltreStubhub(filteredArray);
+            counter+=1;
+            return filteredArray;
+  
+        }else{
           counter+=1;
-          return filteredArray;
+          return []
+        }
+
 
       }
       function filterGametime(data) {
@@ -445,10 +457,9 @@ const Index = () => {
         
       }      
 
-      if(TicketsStubhub.length>0 && TicketsVividseats.length>0){
+
        
-        if(TicketsGameTimes.length>0){
-        }
+
         const dataFiltredGame = filterGametime(TicketsGameTimes);
 
         const dataFiltredStub = filterStubhub(TicketsStubhub)
@@ -478,7 +489,7 @@ const Index = () => {
           setMergedData(mergedArray)
   
         }
-      }
+     
       
 
     }, [quantity,lowPrice,highPrice]);
