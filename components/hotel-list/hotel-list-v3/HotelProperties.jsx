@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , quantity , mapVivid , urlPartnerize}) => {
   function addTicketDetails(ticketId) {
+    console.log(urlPartnerize);
     // Define the new parameters to be added
     const newParams = `%26showDetails%3D${ticketId}%26groupId%3D%26qty%3D${quantity}`;
   
