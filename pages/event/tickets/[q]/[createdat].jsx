@@ -43,6 +43,8 @@ const Index = () => {
     const [mergedData, setMergedData] = useState([]);
 
     const [urlVividseats, setUrlVividseats] = useState('');
+    const [urlPartnerize, setUrlPartnerize] = useState('');
+
     const [urlStubhub, setUrlStubhub] = useState('');
     const [urlGameTimes, setUrlGameTimes] = useState('');
 
@@ -130,7 +132,11 @@ const Index = () => {
 
           if(filteredItems.length>0){
             setDataVividseats(filteredItems);
+            console.log(filteredItems);
             setUrlVividseats(`https://www.vividseats.com${filteredItems[0].organicUrl}`)
+            const responsePartnerize = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getEventPartnerize/${filteredItems[0].id}`);
+            const dataPartnerize = responsePartnerize.data;
+            setUrlPartnerize(dataPartnerize.Url)
 
           }    
           // Update data state with the fetched events
@@ -695,7 +701,7 @@ if (priceA < priceB) {
                   colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
                   />
                 ):(
-                  <HotelProperties data={mergedData} urlGameTimes={urlGameTimes} urlVividseats={urlVividseats} urlStubhub={urlStubhub} quantity={quantity} mapVivid={mapUrl}/>
+                  <HotelProperties data={mergedData} urlGameTimes={urlGameTimes} urlVividseats={urlVividseats} urlStubhub={urlStubhub} quantity={quantity} mapVivid={mapUrl} urlPartnerize={urlPartnerize}/>
                 )}
                 
               </div>

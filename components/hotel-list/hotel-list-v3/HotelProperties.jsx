@@ -4,7 +4,25 @@ import { Navigation, Pagination } from "swiper";
 import Image from "next/image";
 import Link from "next/link";
 
-const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , quantity , mapVivid}) => {
+const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , quantity , mapVivid , urlPartnerize}) => {
+  function addTicketDetails(ticketId) {
+    // Define the new parameters to be added
+    const newParams = `%26showDetails%3D${ticketId}%26groupId%3D%26qty%3D${quantity}`;
+  
+    // Find the position of '&intsrc' in the URL
+    const intsrcIndex = urlPartnerize.indexOf('&intsrc');
+  
+
+  
+    // Insert the new parameters before '&intsrc'
+    const updatedUrl = urlPartnerize.slice(0, intsrcIndex) + newParams + urlPartnerize.slice(intsrcIndex);
+  
+    return updatedUrl;
+  }
+  
+  // Example usage
+  const originalUrl = "https://vivid-seats.pxf.io/c/4751942/1017970/12730?prodsku=4776051&u=https%3A%2F%2Fwww.vividseats.com%2Fthe-book-of-mormon-tickets-new-york-eugene-oneill-theatre-6-22-2024--theater-musical%2Fproduction%2F4776051%3Futm_term%3Dproduction-4776051&intsrc=APIG_7904";
+  const updatedUrl = addTicketDetails(originalUrl);
   const handlePriceVividseat = (value) =>{
     // Convert the value to a floating-point number
     const floatValue = parseFloat(value);
@@ -18,6 +36,8 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
       return value;
     }
   }
+
+  console.log(data);
   return (
     <>
       {data.map((item,index) => (
@@ -156,7 +176,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                   </div>
   
                   <Link
-                    href={`${urlVividseats}?showDetails=${item.i}&groupId=&qty=${quantity}`}
+                    href={addTicketDetails(item.i)}
                     className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-10" target="_blank"
                   >
                     See Availability{" "}
@@ -240,7 +260,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                   </div>
   
                   <Link
-                    href={`${urlStubhub}?quantity=${quantity}&listingId=${item.Id}`}
+                    href={`${urlStubhub}?quantity=${quantity}&listingId=${item.Id}&clickref=1011lyDMBA34&utm_source=partnerize_tickethubspot&utm_medium=publisher_program&utm_sub_medium=Comparison%2FReview&utm_campaign=1101l799&utm_content=0&PCID=partnerize_all`}
                     className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-10" target="_blank"
                   >
                     See Availability{" "}

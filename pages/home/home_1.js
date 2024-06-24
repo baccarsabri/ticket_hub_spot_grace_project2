@@ -15,6 +15,28 @@ import Hotels from "../../components/hotels/Hotels";
 import SelectFilter from "../../components/hotels/filter-tabs/SelectFilter";
 
 const Home_1 = () => {
+  function addTicketDetails(url) {
+    // Define the new parameters to be added
+    const newParams = '%26showDetails%3DVB9949937452%26groupId%3D%26qty%3D2';
+  
+    // Find the position of '&intsrc' in the URL
+    const intsrcIndex = url.indexOf('&intsrc');
+  
+    if (intsrcIndex === -1) {
+      throw new Error("'&intsrc' parameter not found in the URL.");
+    }
+  
+    // Insert the new parameters before '&intsrc'
+    const updatedUrl = url.slice(0, intsrcIndex) + newParams + url.slice(intsrcIndex);
+  
+    return updatedUrl;
+  }
+  
+  // Example usage
+  const originalUrl = "https://vivid-seats.pxf.io/c/4751942/1017970/12730?prodsku=4776051&u=https%3A%2F%2Fwww.vividseats.com%2Fthe-book-of-mormon-tickets-new-york-eugene-oneill-theatre-6-22-2024--theater-musical%2Fproduction%2F4776051%3Futm_term%3Dproduction-4776051&intsrc=APIG_7904";
+  const updatedUrl = addTicketDetails(originalUrl);
+  
+  console.log(updatedUrl);
   return (
     <>
       <Seo pageTitle="Buy and Sell Tickets: Concerts, Sports & Theater" />
