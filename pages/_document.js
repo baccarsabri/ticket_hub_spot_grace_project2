@@ -26,6 +26,22 @@ export default function Document() {
         />
 
         <link rel="icon" href="/icon_hubspot.jpg" />
+          {/* Google Tag Manager */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R03BKKW3M"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-9R03BKKW3M');
+              `,
+            }}
+          />
+          {/* Google AdSense */}
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4334905253329322"
+           crossorigin="anonymous"></script>
       </Head>
       <body>
         <Main />

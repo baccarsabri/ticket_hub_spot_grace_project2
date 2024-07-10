@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 
 const DateSearch = () => {
   const [dates, setDates] = useState([
-    new DateObject().setDay(15),
-    new DateObject().setDay(14).add(1, "month"),
+    new DateObject(),
+    new DateObject().add(3, "days"),
   ]);
-
+useEffect(()=>{
+  const formattedDates = dates.map(date => date.format("YYYY-MM-DDTHH:mm:ss"));
+    console.log(formattedDates);
+  },[dates[0]&& dates[1]])
   return (
     <div className="text-15 text-light-1 ls-2 lh-16 custom_dual_datepicker">
       <DatePicker
@@ -14,7 +17,7 @@ const DateSearch = () => {
         containerClassName="custom_container-picker"
         value={dates}
         onChange={setDates}
-        numberOfMonths={2}
+        numberOfMonths={1}
         offsetY={10}
         range
         rangeHover

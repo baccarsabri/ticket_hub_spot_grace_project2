@@ -67,11 +67,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     </div>
                     {/* End image */}
   
-                    <div className="cardImage__wishlist">
-                      <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                        <i className="icon-heart text-12"></i>
-                      </button>
-                    </div>
+                 
                   </div>
                 </div>
                 {/* End .col */}
@@ -102,6 +98,10 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     <span className="text-22 lh-12 fw-600 text-dark-1 ml-5">
                       US${item?.price.prefee/100}
                     </span>
+                    <br/>
+                    <span className="text-14 lh-12 fw-300 text-dark-1 ml-5">
+                      (Fees not included)
+                    </span>
                   </div>
   
                   <Link
@@ -121,7 +121,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
               item.r && (
                 <div className="row x-gap-20 y-gap-20">
                 <div className="col-md-auto">
-                  <div className="cardImage ratio ratio-1:1 w-180  md:w-1/1 rounded-5">
+                  <div className="cardImage ratio ratio-1:2 w-210  md:w-1/1 rounded-5">
                     <div className="cardImage__content custom_inside-slider">
                      
                         
@@ -174,6 +174,10 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     <span className="text-22 lh-12 fw-600 text-dark-1 ml-5">
                       US${handlePriceVividseat(item.p)}
                     </span>
+                    <br/>
+                    <span className="text-14 lh-12 fw-300 text-dark-1 ml-5">
+                      (Fees not included)
+                    </span>
                   </div>
   
                   <Link
@@ -193,7 +197,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
               item.EventId && (
                 <div className="row x-gap-20 y-gap-20">
                 <div className="col-md-auto">
-                  <div className="cardImage ratio ratio-1:1 w-180 md:w-1/1 rounded-5">
+                  <div className="cardImage ratio ratio-1:2 w-180 md:w-1/1 rounded-5">
                     <div className="cardImage__content custom_inside-slider">
                      
                         
@@ -257,6 +261,10 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                   
                     <span className="text-22 lh-12 fw-600 text-dark-1 ml-5">
                       US{item.Price}
+                    </span>
+                    <br/>
+                    <span className="text-14 lh-12 fw-300 text-dark-1 ml-5">
+                      (Fees not included)
                     </span>
                   </div>
   

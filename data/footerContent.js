@@ -3,7 +3,7 @@ module.exports = [
     id: 3,
     title: "Contact us",
     menuList: [
-      { name: "Contact", routerPath: "/contact" },
+      { name: "support@tickethubspot.com", routerPath: "mailto:support@tickethubspot.com"  },
   
     ],
   },

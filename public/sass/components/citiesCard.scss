@@ -32,8 +32,8 @@
       background-color: color-opac(dark-1, 0.4);
       border-radius: inherit;
       transition: all 0.5s $easeOutQuart;
-      opacity: 0;
-    }
+      opacity: 1;
+        }
 
     &__top {
       transition: all 0.5s $easeOutQuart;

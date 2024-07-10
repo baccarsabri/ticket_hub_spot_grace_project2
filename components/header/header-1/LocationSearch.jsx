@@ -40,7 +40,7 @@ const SearchBar = () => {
   return (
     <>
       <div className="searchMenu-loc js-form-dd js-liverSearch">
-        <div
+        <div 
           className="d-flex items-center"
           data-bs-toggle="dropdown"
           data-bs-auto-close="true"
@@ -51,7 +51,7 @@ const SearchBar = () => {
             <input
               autoComplete="off"
               type="search"
-              placeholder="eeDestination, attraction, hotel, etc..."
+              placeholder="search events, artist"
               className="text-white header-search"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}

@@ -135,10 +135,11 @@ const MainMenu = ({ style = "" }) => {
           </ul>
         </li> */}
 
-
+        {/*
         <li className={router.pathname === "/contact" ? "current" : ""}>
           <Link href="/contact">Contact</Link>
         </li>
+        */}
       </ul>
     </nav>
   );

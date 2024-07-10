@@ -49,11 +49,12 @@ const BlogSingleDynamic = () => {
               <h1 className="text-30 fw-600">{blog?.title}</h1>
               <div className="text-15 text-light-1 mt-10">{blog?.date}</div>
             </div>
-            <div className="col-12">
+            <div className="col-9">
               <img
                 src={blog?.img}
+ 
                 alt={blog?.title}
-                className="col-12 rounded-8 w-100 img_large_details"
+                className="col-8 rounded-8 w-300 h-100 img_large_details"
               />
             </div>
           </div>
@@ -75,17 +76,7 @@ const BlogSingleDynamic = () => {
 
               <div className="border-top-light pt-40 mt-40" />
 
-              <div className="row">
-                <div className="col-auto">
-                  <h3 className="text-22 fw-500">Leave a Reply</h3>
-                  <p className="text-15 text-dark-1 mt-5">
-                    Your email address will not be published.
-                  </p>
-                </div>
-              </div>
-              {/* End Leave a repy title */}
-
-              <FormReply />
+              
             </div>
             {/* End .col */}
           </div>

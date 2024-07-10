@@ -23,24 +23,7 @@ const home_9 = () => {
       <TopHeader />
       {/* End Header top Banner */}
 
-      <div
-        className="offcanvas offcanvas-top vh-100"
-        tabIndex={-1}
-        id="offcanvasTop2"
-        aria-labelledby="offcanvasTopLabel"
-        style={{ zIndex: 1200 }}
-      >
-        <div className="offcanvas-header position-absolute top-0 end-0">
-          <button
-            type="button"
-            className="btn-close text-reset "
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          />
-        </div>
-        {/* End header */}
-        <SearchBoxContent />
-      </div>
+
       {/* End searchBar Offcanvas Popup */}
 
       <Header9 />

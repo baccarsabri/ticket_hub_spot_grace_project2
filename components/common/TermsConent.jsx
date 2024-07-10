@@ -7,19 +7,66 @@ const TermsConent = () => {
         <div className="col-lg-3">
           <div className="px-30 py-30 rounded-4 border-light">
             <TabList className="tabs__controls row y-gap-10 js-tabs-controls">
+            <Tab className="col-12 tabs__button js-tabs-button">
+              Disclosure
+              </Tab>
               <Tab className="col-12 tabs__button js-tabs-button">
               Terms & Conditions
               </Tab>
               <Tab className="col-12 tabs__button js-tabs-button">
               Privacy Policy
               </Tab>
-              
+            
             </TabList>
           </div>
         </div>
         {/* End .col-lg-3 */}
 
         <div className="col-lg-9">
+        <TabPanel>
+            <div className="tabs__content js-tabs-content" data-aos="fade">
+              <h1 className="text-30 fw-600 mb-15">DISCLAIMER</h1>
+
+              <h2 className="text-16 fw-500 mt-35">
+              WEBSITE DISCLAIMER
+              </h2>
+              <p className="text-15 text-dark-1 mt-5">
+              The information provided by Ticket Hubspot (we', 'us', or 'our') on https://www.tickethubspot.com/ (the 'Site") is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.<br/> UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK.
+
+              </p>
+              <h2 className="text-16 fw-500 mt-35">
+              EXTERNAL LINKS DISCLAIMER
+              </h2>
+              <p className="text-15 text-dark-1 mt-5">
+              The Site may contain (or you may be sent through the Site) links to other websites or content belonging to or originating from third parties or links to websites and features in banners or other advertising. Such external links are not investigated, monitored, or checked for accuracy, adequacy, validity, reliability, availability, or completeness by us.
+              <br/>
+              WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR THE ACCURACY OR RELIABILITY OF ANY INFORMATION OFFERED BY THIRD-PARTY WEBSITES LINKED THROUGH THE SITE OR ANY WEBSITE OR FEATURE LINKED IN ANY BANNER OR OTHER ADVERTISING.
+              <br/>
+              WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES.
+
+              </p>
+              <h2 className="text-16 fw-500 mt-35">
+              AFFILIATES DISCLAIMER
+
+              </h2>
+
+              <p className="text-15 text-dark-1 mt-5">
+              The Site may contain links to affiliate websites, and we receive an affiliate commission for any purchases made by you on the affiliate website using such links. Our affiliates include the following:
+              <br/>
+
+              </p>
+
+              <ul className="list-disc text-15 mt-30">
+    
+                <li>Rakuten Affiliate Network</li>
+                <li>Impact</li>
+                <li>Partnerize</li>
+
+              </ul>
+
+
+            </div>
+          </TabPanel>
         <TabPanel>
             <div className="tabs__content js-tabs-content" data-aos="fade">
               <h1 className="text-30 fw-600 mb-15">Terms & Conditions</h1>
@@ -264,6 +311,7 @@ const TermsConent = () => {
               </p>
             </div>
           </TabPanel>
+      
           {/* End  General Terms of Use */}
 
      

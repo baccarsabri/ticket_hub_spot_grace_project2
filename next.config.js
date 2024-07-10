@@ -5,7 +5,7 @@ const nextConfig = {
   },
   output: 'export',
   images: {
-    domains: ['seatgeek.com', 'images.gametime.co', 'd2o50i5c2dr30a.cloudfront.net', 'img.vggcdn.net'], // Add your local domain here
+    domains: ['seatgeek.com', 'images.gametime.co', 'd2o50i5c2dr30a.cloudfront.net', 'img.vggcdn.net', 'media.vsstatic.com'], // Add your local domain here
   },
   reactStrictMode: false,
 };

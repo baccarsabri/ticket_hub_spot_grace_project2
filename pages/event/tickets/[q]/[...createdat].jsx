@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import Seo from "../../../../components/common/Seo";
+import TopHeader from "../../../../components/header/header-9/top-header";
+
 import Header11 from "../../../../components/header/header-11";
 import DropdownSelelctBar from "../../../../components/hotel-list/common/DropdownSelelctBar";
 import MapPropertyFinder from "../../../../components/hotel-list/common/MapPropertyFinder";
@@ -13,10 +15,13 @@ import { ColorRing ,Oval,RotatingLines,ThreeDots} from 'react-loader-spinner'
 
 
 const Index = () => {
-    const router = useRouter()
-    const createdat = router.query.createdat;
+    const router = useRouter();
+    const { query } = router;
+    console.log(router.query);
+    const createdat = Array.isArray(query?.createdat) ? query.createdat[0] : undefined;
+    const venueCityParam = Array.isArray(query?.createdat) ? query.createdat[1] : undefined;
 
-    const q = router.query.q ;
+    const q = query.q;
     const [dataStubhub, setDataStubhub] = useState([]);
     const [TicketsStubhub, setTicketsStubhub] = useState([]);
     const [dataFiltredStubhub, setDataFiltreStubhub] = useState([]);
@@ -64,11 +69,10 @@ const Index = () => {
           const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/stubhubSearch/${q}`);
           const data = response.data;
 
-
           const filteredItems = data.json.items.filter(item => {
             // Destructure the necessary properties from the item
-            const { formattedDate, dayOfWeek } = item;
-          
+            const { formattedDate, dayOfWeek, venueCity } = item;
+          console.log(venueCity);
             // Get the current year
             const currentYear = new Date().getFullYear();
           
@@ -97,11 +101,10 @@ const Index = () => {
             const isoDateString = date.toISOString().split('T')[0];
           
             // Return true if isoDateString is "2024-03-02", otherwise false
-            return isoDateString === createdat;
+
+            return isoDateString === createdat && venueCity === venueCityParam;
           });
 
-
-          
           if(filteredItems.length>0){
             setDataStubhub(filteredItems);
             setUrlStubhub(`https://www.stubhub.com${filteredItems[0].url}`)
@@ -122,14 +125,14 @@ const Index = () => {
 
           const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/vividseatsSearch/${q}`);
           const data = response.data;
-      
+          console.log(data);
             const filteredItems = data.json.items.filter(item => {
               const date = item.localDate.substring(0, 10);
 
         
-              return date === createdat;
+              return date === createdat && item.venue.city === venueCityParam;
           })
-
+          console.log(filteredItems);
           if(filteredItems.length>0){
             setDataVividseats(filteredItems);
             console.log(filteredItems);
@@ -153,11 +156,12 @@ const Index = () => {
           // Make your API call using Axios
           const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/gametimeSearch/${q}`);
           const data = response.data;
+          console.log(data);
             const filteredItems = data.events.filter(item => {
               const date = item.event.datetime_local.substring(0, 10);
 
         
-              return date === createdat;
+              return date === createdat && item.venue.city === venueCityParam;
           })
 
           if(filteredItems.length>0){
@@ -639,6 +643,8 @@ if (priceA < priceB) {
 <Seo pageTitle={`${q.toUpperCase()} event tickets`} />
           )
         }
+              <TopHeader />
+
           
           {/* End Page Title */}
     

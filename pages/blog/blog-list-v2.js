@@ -61,7 +61,6 @@ const BlogListV2 = () => {
         {/* End .container */}
       </section>
 
-      <CallToActions />
       {/* End Call To Actions Section */}
 
       <DefaultFooter />

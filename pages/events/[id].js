@@ -47,7 +47,6 @@ const NBAPlayerPage = () => {
                 {/* End .dashboard__content */}
             </div>
             {/* End dashbaord content */}
-            <CallToActions />
             <DefaultFooter />
         </>
     );

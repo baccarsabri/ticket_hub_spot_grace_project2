@@ -26,8 +26,7 @@ const Terms = () => {
       </section>
       {/* End terms section */}
 
-      <CallToActions />
-      {/* End Call To Actions Section */}
+$      {/* End Call To Actions Section */}
 
       <DefaultFooter />
       {/* End Call To Actions Section */}

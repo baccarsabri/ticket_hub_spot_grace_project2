@@ -4,6 +4,7 @@ import MainMenu from "../MainMenu";
 import CurrenctyMegaMenu from "../CurrenctyMegaMenu";
 import LanguageMegaMenu from "../LanguageMegaMenu";
 import MobileMenu from "../MobileMenu";
+import LocationSearch from "./LocationSearch";
 
 const Header1 = () => {
   const [navbar, setNavbar] = useState(false);
@@ -22,7 +23,7 @@ const Header1 = () => {
 
   return (
     <>
-      <header className={`header ${navbar ? "bg-dark-1 is-sticky" : ""}`}>
+      <header className={`header mt-40 ${navbar ? "bg-dark-1 is-sticky" : ""}`}>
         <div className="header__container px-30 sm:px-20">
           <div className="row justify-between items-center">
             <div className="col-auto">
@@ -36,12 +37,20 @@ const Header1 = () => {
                   <div className="header-menu__content">
                     <MainMenu style="text-white" />
                   </div>
+                 
                 </div>
+            
                 {/* End header-menu */}
               </div>
+              
               {/* End d-flex */}
             </div>
-            {/* End col */}
+         
+            {/* 
+               <div className="relative xl:d-none">
+                  <LocationSearch />
+                </div>
+            */}
 
       {/* Mobile */}
             <div className="col-auto">

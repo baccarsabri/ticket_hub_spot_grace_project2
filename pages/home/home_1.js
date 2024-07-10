@@ -13,8 +13,14 @@ import Testimonial from "../../components/home/home-1/Testimonial";
 import TestimonialLeftCol from "../../components/home/home-1/TestimonialLeftCol";
 import Hotels from "../../components/hotels/Hotels";
 import SelectFilter from "../../components/hotels/filter-tabs/SelectFilter";
+import TopHeader from "../../components/header/header-9/top-header";
+import Link from "next/link";
+import Cruise3 from "../../components/cruise/Cruise3";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home_1 = () => {
+  const [underEvents, setUnderEvents] = useState([]);
   function addTicketDetails(url) {
     // Define the new parameters to be added
     const newParams = '%26showDetails%3DVB9949937452%26groupId%3D%26qty%3D2';
@@ -37,10 +43,32 @@ const Home_1 = () => {
   const updatedUrl = addTicketDetails(originalUrl);
   
   console.log(updatedUrl);
+
+  useEffect(()=>{
+    async function fetchData() {
+      try {
+        // Make your API call using Axios
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getUnderoneoo`);
+        const data = response.data;
+        console.log(data);
+        const filteredData = data.Items.filter(item => new Date(item.ExpirationDate) > new Date());
+        console.log(filteredData);
+        // Update data state with the fetched events
+        setUnderEvents(filteredData);
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+      } finally {
+        // Set loading to false after the API call is complete
+      //  setLoading(false);
+      }
+    }
+    fetchData();
+  },[]);
   return (
     <>
       <Seo pageTitle="Buy and Sell Tickets: Concerts, Sports & Theater" />
       {/* End Page Title */}
+      <TopHeader />
 
       <Header1 />
       {/* End Header 1 */}
@@ -78,18 +106,34 @@ const Home_1 = () => {
         </div>
         {/* End .container */}
       </section>
-      {/* End Popular Destinations */}
 
-      <section className="layout-pt-md layout-pb-md">
+      <section className="layout-pt-md layout-pb-lg">
         <div className="container">
-          <div className="row y-gap-20">
+          <div className="row y-gap-20 justify-between items-end">
+            <div className="col-auto">
+              <div className="sectionTitle -md">
+                <h2 className="sectionTitle__title">Events Under $100</h2>
+             
+              </div>
+            </div>
+            {/* End .col */}
 
-             {/*  <AddBanner /> */}
-
+         
+            {/* End .col */}
           </div>
+          {/* End .row */}
+
+          <div className="row y-gap-30 pt-40 sm:pt-20">
+            {underEvents.length>0 && (  <Cruise3 underEvents={underEvents}/>)}
+          
+          </div>
+          {/* End .row */}
         </div>
         {/* End .container */}
       </section>
+      {/* End Popular Destinations */}
+
+  
       {/* End AddBanner */}
 
 
@@ -107,7 +151,6 @@ const Home_1 = () => {
 
       {/* End Destination we love Section */}
 
-      <CallToActions />
       {/* End Call To Actions Section */}
 
       <DefaultFooter />

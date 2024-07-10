@@ -10,7 +10,7 @@ const TopHeaderFilter = ({numberoftk , sortPrice , page}) => {
           </div>
           ) :(
             <div className="text-18">
-            <span className="fw-500">{numberoftk} events</span> on all sites
+            <span className="fw-500">{numberoftk} events</span> on all sites.  {numberoftk==0 && (<span>Try again later.</span>)}
           </div>
           )
 
