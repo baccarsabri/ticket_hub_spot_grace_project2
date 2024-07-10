@@ -51,7 +51,13 @@ const Home_1 = () => {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getUnderoneoo`);
         const data = response.data;
         console.log(data);
-        const filteredData = data.Items.filter(item => new Date(item.ExpirationDate) > new Date());
+        const now = new Date();
+        const oneMonthFromNow = new Date();
+        oneMonthFromNow.setMonth(now.getMonth() + 1);
+        const filteredData = data.Items.filter(item => {
+          const expirationDate = new Date(item.ExpirationDate);
+          return expirationDate > now && expirationDate <= oneMonthFromNow;
+        });
         console.log(filteredData);
         // Update data state with the fetched events
         setUnderEvents(filteredData);
