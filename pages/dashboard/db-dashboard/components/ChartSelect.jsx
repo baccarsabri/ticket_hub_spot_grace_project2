@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-const ChartSelect = ({options, selectedOption, setSelectedOption}) => {
- 
+const ChartSelect = ({selectedOption, setSelectedOption}) => {
+  const options = [
+    "All dates",
+    "Custom date",
+
+  ];
 
   return (
     <div className="dropdown js-dropdown js-category-active">
