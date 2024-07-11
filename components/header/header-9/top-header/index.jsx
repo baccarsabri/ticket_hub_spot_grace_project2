@@ -6,21 +6,13 @@ import LanguageMegaMenu from "../../LanguageMegaMenu";
 const HeaderBanner = () => {
   return (
     <section className="header-banner py-5 bg-blue-1">
-    <div className="container">
-      <div className="row items-center justify-between">
-        <div className="col-auto">
-          <ContactInfo />
-          {/* End .row */}
-        </div>
-        {/* End .col */}
+      <div className="container">
+      <ContactInfo />
 
-  
-        {/* End .col-auto */}
+        {/* End .row */}
       </div>
-      {/* End .row */}
-    </div>
-    {/* End .container */}
-  </section>
+      {/* End .container */}
+    </section>
   );
 };
 
