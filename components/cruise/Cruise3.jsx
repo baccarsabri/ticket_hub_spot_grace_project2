@@ -108,12 +108,7 @@ const Cruise3 = ({underEvents}) => {
                         Date
                       </div>
                       <div className="text-14 text-light-1">
-                      {new Date(getPreviousDay(item?.ExpirationDate)).toLocaleString('en-US', {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
-  
-          })}
+                      {getPreviousDay(item?.ExpirationDate)}
                         </div>
                     </div>
                     <div className="col-auto">

@@ -8,6 +8,7 @@ import WishlistTableTaxo from '../dashboard/db-wishlist/components/WishTableTaxo
 import Seo from '../../components/common/Seo';
 import Header11 from "../../components/header/header-11";
 import CallToActions from '../../components/common/CallToActions';
+import TopHeader from "../../components/header/header-9/top-header";
 
 
 const TaxonomiesPage = () => {
@@ -18,6 +19,7 @@ const TaxonomiesPage = () => {
         <>
             <Seo pageTitle={`${id}`} />
             {/* End Page Title */}
+            <TopHeader />
 
             <div className="header-margin"></div>
             {/* header top margin */}

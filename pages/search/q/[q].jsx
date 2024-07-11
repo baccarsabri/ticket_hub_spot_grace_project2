@@ -16,10 +16,18 @@ import DateSearch from '../../../components/activity-list/common/DateSearch';
 import GuestSearch from '../../../components/car-list/common/GuestSearch';
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import TopHeader from "../../../components/header/header-9/top-header";
+import ChartSelect from '../../dashboard/db-dashboard/components/ChartSelect';
 
 
 
 const Index = () => {
+  const options = [
+    "All dates",
+    "Custom date",
+
+  ];
+
+  const [selectedOption, setSelectedOption] = useState(options[0]);
     const router = useRouter()
     const { q } = router.query
     const [data, setData] = useState([]);
@@ -58,41 +66,73 @@ const Index = () => {
     }, [q]); // Include q in the dependency array so useEffect runs when q changes
 
     useEffect(()=>{
-      const formattedDates = datesFilter.map(date => date.format("YYYY-MM-DDTHH:mm:ss"));
-        console.log(formattedDates);
-      },[datesFilter]);
+  console.log(data);
+      },[selectedOption]);
 
 
 
       const filterEvents = () => {
 
         const [startDate, endDate] = datesFilter.map(date => new Date(date.format("YYYY-MM-DDTHH:mm:ss")));
-    
-        const filteredByDates = data.events.filter(event => {
-          const eventDate = new Date(event.datetime_local);
-          console.log(eventDate);
-          return eventDate >= startDate && eventDate <= endDate;
-        });
-        setEvents(filteredByDates);
-
-        if(venueSearch != ""){
-          const filteredByVenue = filteredByDates.filter(event => {
-            const venueItem = event.venue.name.toLowerCase();
-            return venueItem == venueSearch.toLowerCase();
+        
+        if(selectedOption === "Custom date"){
+          const filteredByDates = data.events.filter(event => {
+            const eventDate = new Date(event.datetime_local);
+            console.log(eventDate);
+            return eventDate >= startDate && eventDate <= endDate;
           });
-          console.log(filteredByVenue);
-          setEvents(filteredByVenue);
+          setEvents(filteredByDates);
+  
+          if(venueSearch != ""){
+            const filteredByVenue = filteredByDates.filter(event => {
+              const venueItem = event.venue.name.toLowerCase();
+              return venueItem == venueSearch.toLowerCase();
+            });
+            setEvents(filteredByVenue);
+  
+          }
+          if(citySearch != ""){
+            const filteredByCity = filteredByDates.filter(event => {
+              const CityItem = event.venue.city.toLowerCase();
+              const state = event.venue.state.toLowerCase();
+              const postal_code = event.venue.postal_code.toLowerCase();
 
+              return CityItem == citySearch.toLowerCase() || state == citySearch.toLowerCase() || postal_code == citySearch.toLowerCase();
+            });
+            setEvents(filteredByCity);
+          }
+        }else{
+          const filteredByDates = data.events;
+  
+          if(venueSearch != ""){
+            const filteredByVenue = filteredByDates.filter(event => {
+              const venueItem = event.venue.name.toLowerCase();
+              return venueItem == venueSearch.toLowerCase();
+            });
+            console.log(filteredByVenue);
+            setEvents(filteredByVenue);
+  
+          }else{
+            setEvents(filteredByDates)
+          }
+          if(citySearch != ""){
+            const filteredByCity = filteredByDates.filter(event => {
+              const CityItem = event.venue.city.toLowerCase();
+              const state = event.venue.state.toLowerCase();
+              const postal_code = event.venue.postal_code.toLowerCase();
+
+              return CityItem == citySearch.toLowerCase() || state == citySearch.toLowerCase() || postal_code == citySearch.toLowerCase();
+            });
+            setEvents(filteredByCity);
+          }else{
+            setEvents(filteredByDates)
+          }
         }
-        if(citySearch != ""){
-          const filteredByCity = filteredByDates.filter(event => {
-            const CityItem = event.venue.city.toLowerCase();
-            return CityItem == citySearch.toLowerCase();
-          });
-          setEvents(filteredByCity);
-        }
+
         
       };
+
+
  
   return (
     <>
@@ -118,13 +158,15 @@ const Index = () => {
                 <h1 className="text-30 fw-600 mt-30">Search results for: {q}</h1>
               </div>
             </div>
+
             <div className="mainSearch -col-5 border-light bg-white px-10 py-10 lg:px-10 lg:pt-5 lg:pb-20 rounded-4 mt-30">
         <div className="button-grid items-center">
         <div className="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar">
-            <div>
-              <h4 className="text-15 fw-500 ls-2 lh-16">Date range</h4>
-              <div className="text-15 text-light-1 ls-2 lh-16 custom_dual_datepicker">
-      <DatePicker
+          
+              <div className="text-15 ls-2 lh-16 custom_dual_datepicker">
+              <ChartSelect options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
+
+      {selectedOption === "Custom date" && (<DatePicker
         inputClass="custom_input-picker"
         containerClassName="custom_container-picker"
         value={datesFilter}
@@ -134,9 +176,10 @@ const Index = () => {
         range
         rangeHover
         format="MMMM DD"
-      />
+
+      />)}
     </div>            
-        </div>
+        
           </div>
 
 
@@ -164,7 +207,7 @@ const Index = () => {
             <input
               autoComplete="off"
               type="search"
-              placeholder="City"
+              placeholder="Suburb, City, Zip Code"
               className="js-search js-dd-focus"
               value={citySearch}
               onChange={(e) => setCitySearch(e.target.value)}

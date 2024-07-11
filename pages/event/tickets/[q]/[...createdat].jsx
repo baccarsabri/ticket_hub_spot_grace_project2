@@ -66,9 +66,9 @@ const Index = () => {
       async function fetchDataStubhub() {
         try {
           // Make your API call using Axios
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/stubhubSearch/${q}`);
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/stubhubSearch/${q}/${createdat}/${venueCityParam}`);
           const data = response.data;
-
+          console.log(data);
           const filteredItems = data.json.items.filter(item => {
             // Destructure the necessary properties from the item
             const { formattedDate, dayOfWeek, venueCity } = item;
@@ -105,9 +105,9 @@ const Index = () => {
             return isoDateString === createdat && venueCity === venueCityParam;
           });
 
-          if(filteredItems.length>0){
-            setDataStubhub(filteredItems);
-            setUrlStubhub(`https://www.stubhub.com${filteredItems[0].url}`)
+          if(data?.json?.items.length>0){
+            setDataStubhub(data.json.items);
+            setUrlStubhub(`https://www.stubhub.com${data?.json?.items[0].url}`)
           }          
           
           // Update data state with the fetched events
@@ -364,9 +364,9 @@ const Index = () => {
     useEffect(() => {
       if(loadingAll>=3){
 
-        const array1 = dataFiltredGameTimes;
+        const array3 = dataFiltredGameTimes;
         const array2 = dataFiltredStubhub;
-        const array3 = dataFiltredVividseats;
+        const array1 = dataFiltredVividseats;
         
       /*  const result = Array.from({ length: array1.length * 3 }, (_, index) => {
           const repeatIndex = Math.floor(index / 3);

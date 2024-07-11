@@ -31,8 +31,8 @@ const handleOptionClick = (item) => {
   console.log(item);
   const datePart = item.datetime_local.substring(0, 10);
   const name = item.performers[0].name;
-
-  router.push(`/event/tickets/${name}/${datePart}`)
+  const venue = item.venue.city;
+  router.push(`/event/tickets/${name}/${datePart}/${venue}`);
 };
 
   return (
