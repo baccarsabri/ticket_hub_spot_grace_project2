@@ -50,7 +50,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
               item.delivery_type && (
                 <div className="row x-gap-20 y-gap-20">
                 <div className="col-md-auto">
-                  <div className="cardImage ratio ratio-2:1 w-230  md:w-1/1">
+                  <div className="cardImage ratio ratio-2:1 w-180  md:w-1/1">
                     <div className="cardImage__content custom_inside-slider">
                      
                  
@@ -67,11 +67,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     </div>
                     {/* End image */}
   
-                    <div className="cardImage__wishlist">
-                      <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                        <i className="icon-heart text-12"></i>
-                      </button>
-                    </div>
+                 
                   </div>
                 </div>
                 {/* End .col */}
@@ -110,7 +106,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
   
                   <Link
                     href={`${urlGameTimes}/listings/${item.id}?zoom=9`}
-                    className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-10" target="_blank"
+                    className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-40" target="_blank"
                   >
                     See Availability{" "}
                     <div className="icon-arrow-top-right ml-15"></div>
@@ -143,11 +139,6 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     </div>
                     {/* End image */}
   
-                    <div className="cardImage__wishlist">
-                      <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                        <i className="icon-heart text-12"></i>
-                      </button>
-                    </div>
                   </div>
                 </div>
                 {/* End .col */}
@@ -186,7 +177,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
   
                   <Link
                     href={addTicketDetails(item.i)}
-                    className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-10" target="_blank"
+                    className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-40" target="_blank"
                   >
                     See Availability{" "}
                     <div className="icon-arrow-top-right ml-15"></div>
@@ -231,11 +222,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     </div>
                     {/* End image */}
   
-                    <div className="cardImage__wishlist">
-                      <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                        <i className="icon-heart text-12"></i>
-                      </button>
-                    </div>
+                 
                   </div>
                 </div>
                 {/* End .col */}
@@ -274,7 +261,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
   
                   <Link
                     href={`${urlStubhub}?quantity=${quantity}&listingId=${item.Id}&clickref=1011lyDMBA34&utm_source=partnerize_tickethubspot&utm_medium=publisher_program&utm_sub_medium=Comparison%2FReview&utm_campaign=1101l799&utm_content=0&PCID=partnerize_all`}
-                    className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-10" target="_blank"
+                    className="button py-10 px-20 -dark-1 bg-blue-1 text-white mt-40" target="_blank"
                   >
                     See Availability{" "}
                     <div className="icon-arrow-top-right ml-15"></div>

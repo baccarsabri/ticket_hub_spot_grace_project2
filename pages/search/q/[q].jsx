@@ -164,7 +164,7 @@ const Index = () => {
         <div className="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar">
           
               <div className="text-15 ls-2 lh-16 custom_dual_datepicker">
-              <ChartSelect options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
+              <ChartSelect selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
 
       {selectedOption === "Custom date" && (<DatePicker
         inputClass="custom_input-picker"

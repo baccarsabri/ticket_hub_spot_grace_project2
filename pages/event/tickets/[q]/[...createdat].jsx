@@ -20,6 +20,7 @@ const Index = () => {
     console.log(router.query);
     const createdat = Array.isArray(query?.createdat) ? query.createdat[0] : undefined;
     const venueCityParam = Array.isArray(query?.createdat) ? query.createdat[1] : undefined;
+    const stateParam = Array.isArray(query?.createdat) ? query.createdat[2] : undefined;
 
     const q = query.q;
     const [dataStubhub, setDataStubhub] = useState([]);
@@ -122,15 +123,15 @@ const Index = () => {
       async function fetchDataVividseats() {
         try {
           // Make your API call using Axios
-
+          console.log('okkkkkkkkkkk');
           const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/vividseatsSearch/${q}`);
           const data = response.data;
           console.log(data);
             const filteredItems = data.json.items.filter(item => {
               const date = item.localDate.substring(0, 10);
-
+              const state = item.venue.state;
         
-              return date === createdat && item.venue.city === venueCityParam;
+              return date === createdat && (item.venue.city === venueCityParam || state === stateParam);
           })
           console.log(filteredItems);
           if(filteredItems.length>0){
@@ -231,10 +232,11 @@ const Index = () => {
     
       // Call the fetchData function immediately
       if(createdat && q){
-        fetchDataVividseats();
 
         fetchDataStubhub();
         fetchDataGameTimes();
+        fetchDataVividseats();
+
       }
      
     }, [createdat]);
@@ -476,9 +478,9 @@ const Index = () => {
         const dataFiltredVivid =  filterVividseats(TicketsVividseats);
 
         if(counter==3){
-          const array1 = dataFiltredGame;
+          const array3 = dataFiltredGame;
           const array2 = dataFiltredStub;
-          const array3 = dataFiltredVivid;
+          const array1 = dataFiltredVivid;
           
 
           const mergedArray = [];
@@ -515,9 +517,9 @@ const Index = () => {
 
     const sortPrice = () =>{
      
-      const array1 = dataFiltredGameTimes;
+      const array3 = dataFiltredGameTimes;
       const array2 = dataFiltredStubhub;
-      const array3 = dataFiltredVividseats;
+      const array1 = dataFiltredVividseats;
           
 
           const mergedArray = [];
