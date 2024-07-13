@@ -140,6 +140,7 @@ const Index = () => {
             setUrlVividseats(`https://www.vividseats.com${filteredItems[0].organicUrl}`)
             const responsePartnerize = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getEventPartnerize/${filteredItems[0].id}`);
             const dataPartnerize = responsePartnerize.data;
+            console.log(dataPartnerize);
             setUrlPartnerize(dataPartnerize.Url)
 
           }    
@@ -517,9 +518,9 @@ const Index = () => {
 
     const sortPrice = () =>{
      
-      const array3 = dataFiltredGameTimes;
+      const array1 = dataFiltredGameTimes;
       const array2 = dataFiltredStubhub;
-      const array1 = dataFiltredVividseats;
+      const array3 = dataFiltredVividseats;
           
 
           const mergedArray = [];

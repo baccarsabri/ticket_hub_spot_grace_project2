@@ -17,8 +17,9 @@ const SearchBar = ({handleSearch,locationSearchContent}) => {
     const datePart = item.datetime_local.substring(0, 10);
     const performer = item.performers[0].name;
     const venue = item.venue.city;
+    const state = item.venue.state;
 
-    router.push(`/event/tickets/${performer}/${datePart}/${venue}`)
+    router.push(`/event/tickets/${performer}/${datePart}/${venue}/${state}`)
   };
 
   const handleInput = (item) => {
