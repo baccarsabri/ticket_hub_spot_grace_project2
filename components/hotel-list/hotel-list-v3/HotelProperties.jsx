@@ -3,8 +3,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , quantity , mapVivid , urlPartnerize}) => {
+  const [failedImages, setFailedImages] = useState({});
+
+  const handleImageError = (index) => {
+    setFailedImages((prev) => ({ ...prev, [index]: true }));
+  };
   function addTicketDetails(ticketId) {
     console.log(urlPartnerize);
     // Define the new parameters to be added
@@ -39,6 +45,7 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
   }
 
   console.log(data);
+
   return (
     <>
       {data.map((item,index) => (
@@ -196,13 +203,14 @@ const HotelProperties = ({data , urlStubhub , urlVividseats , urlGameTimes , qua
                     <div className="cardImage__content custom_inside-slider">
                      
                         
-                      {item?.SvgMapPngUrl ? (
+                      { item?.SvgMapPngUrl && !failedImages[index] ? (
                           <Image
                           width={200}
                           height={200}
                           src={item?.SvgMapPngUrl}
                           alt="image"
                           className="w-100"
+                          onError={() => handleImageError(index)}
                           />
                       ):(
                         <Image
