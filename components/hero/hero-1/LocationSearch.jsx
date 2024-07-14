@@ -18,8 +18,9 @@ const SearchBar = ({handleSearch,locationSearchContent}) => {
     const performer = item.performers[0].name;
     const venue = item.venue.city;
     const state = item.venue.state;
+    const venueName = item.venue.name;
 
-    router.push(`/event/tickets/${performer}/${datePart}/${venue}/${state}`)
+    router.push(`/event/tickets/${performer}/${datePart}/${venue}/${state}/${venueName}`)
   };
 
   const handleInput = (item) => {

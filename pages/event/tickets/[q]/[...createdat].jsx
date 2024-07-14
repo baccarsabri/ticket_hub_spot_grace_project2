@@ -21,6 +21,7 @@ const Index = () => {
     const createdat = Array.isArray(query?.createdat) ? query.createdat[0] : undefined;
     const venueCityParam = Array.isArray(query?.createdat) ? query.createdat[1] : undefined;
     const stateParam = Array.isArray(query?.createdat) ? query.createdat[2] : undefined;
+    const venueNameParam = Array.isArray(query?.createdat) ? query.createdat[3] : undefined;
 
     const q = query.q;
     const [dataStubhub, setDataStubhub] = useState([]);
@@ -67,7 +68,7 @@ const Index = () => {
       async function fetchDataStubhub() {
         try {
           // Make your API call using Axios
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/stubhubSearch/${q}/${createdat}/${venueCityParam}`);
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/stubhubSearch/${q}/${createdat}/${venueCityParam}/${venueNameParam}`);
           const data = response.data;
           console.log(data);
           const filteredItems = data.json.items.filter(item => {

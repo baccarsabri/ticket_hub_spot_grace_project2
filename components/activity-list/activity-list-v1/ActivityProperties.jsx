@@ -24,8 +24,10 @@ const handleViewDetails = (item) => {
   const name = item.performers[0].name.split(' - ')[0];
   const venue = item.venue.city;
   const state = item.venue.state;
+  const venueName = item.venue.name;
 
-  router.push(`/event/tickets/${name}/${datePart}/${venue}/${state}`);
+
+  router.push(`/event/tickets/${name}/${datePart}/${venue}/${state}/${venueName}`);
 };
 
   return (
