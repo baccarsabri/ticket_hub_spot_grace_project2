@@ -660,7 +660,7 @@ if (priceA < priceB) {
           {/* End Header 1 */}
     
           <section className="halfMap">
-            <div className="halfMap__content">
+            <div className="halfMap__content sm:mt-40">
               <h1>
                {dataStubhub.length> 0 && dataStubhub.length< 2 ? (
                 dataStubhub[0]?.name
