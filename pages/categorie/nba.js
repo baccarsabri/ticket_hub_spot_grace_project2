@@ -6,6 +6,7 @@ import Pagination from "../../components/hotel-list/common/Pagination";
 import HotelProperties from "../../components/hotel-list/hotel-list-v5/HotelProperties";
 import DropdownSelelctBar from "../../components/hotel-list/common/DropdownSelelctBar";
 import Locations from "../../components/home/home-5/Locations";
+import TopHeader from "../../components/header/header-9/top-header";
 
 const index = () => {
     return (
@@ -15,6 +16,7 @@ const index = () => {
 
             <div className="header-margin"></div>
             {/* header top margin */}
+            <TopHeader />
 
             <Header11 />
             {/* End Header 1 */}

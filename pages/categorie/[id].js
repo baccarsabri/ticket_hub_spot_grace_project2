@@ -9,6 +9,8 @@ import Locations from "../../components/home/home-5/Locations";
 import Index from "../../components/equipes/index"
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import TopHeader from "../../components/header/header-9/top-header";
+
 
 const CategorieId = () => {
     const router = useRouter();
@@ -39,8 +41,8 @@ const CategorieId = () => {
         <>
             <Seo pageTitle={`${id} teams`} />
             {/* End Page Title */}
+            <TopHeader />
 
-            <div className="header-margin"></div>
             {/* header top margin */}
 
             <Header11 />
